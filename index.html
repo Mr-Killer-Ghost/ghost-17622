@@ -21,6 +21,31 @@
       <a href="https://doxbin.net/user/MrkillerGhost" class="link-button">New DoxBin</a>
     </div>
   </div>
+
+
+<div id="start-screen">
+  <h1>Click to Enter</h1>
+</div>
+
+<audio id="audio-player" src="songs/Joan Of Arc.mp3"></audio>
+
+<script>
+const startScreen = document.getElementById('start-screen');
+const audio = document.getElementById('audio-player');
+
+startScreen.addEventListener('click', () => {
+  startScreen.classList.add('fade-out'); // start fade out animation
+
+  // Wait for the transition to finish (1 second) then hide completely
+  startScreen.addEventListener('transitionend', () => {
+    startScreen.style.display = 'none';
+  }, { once: true });
+
+  audio.play(); // start playing immediately
+});
+
+</script>
+
 </body>
 
 
@@ -30,6 +55,48 @@
 <style>
 
 /* css */
+
+#start-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+
+  opacity: 1;
+  transition: opacity 1s ease;
+  /* keep it visible initially */
+}
+
+#start-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  /* Make it transparent and non-interactive */
+}
+
+#start-screen h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+}
+
+#start-screen p {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+
+
+
+body {
+  cursor: url('/pics/cur.webp'), auto;
+}
 
 
 body {
@@ -84,6 +151,17 @@ body {
   color: #aaaaaa;
 }
 
+/* For all buttons and links */
+button:hover, a:hover {
+  cursor: pointer;
+}
+
+/* Or with a custom cursor image */
+button:hover, a:hover {
+  cursor: url('/pics/cur.webp'), pointer;
+}
+
+
 .links .link-button {
   display: block;
   background-color: #000000;
@@ -109,6 +187,7 @@ body {
   color: red;
   text-shadow: 0 0 1px red, 0 0 10px red, 0 0 14px darkred;
 }
+
 
 
 
