@@ -7,7 +7,6 @@
   <link rel="preload" href="songs/Joan Of Arc.mp3" as="audio" />
   <link rel="preload" href="https://raw.githubusercontent.com/Mr-Killer-Ghost/ghost/refs/heads/main/pics/pfp.png" as="image" />
   <style>
-    /* Combined and optimized CSS */
 
     body {
       margin: 0;
@@ -218,6 +217,37 @@
 
       audio.play();
     });
+  </script>
+
+
+  <script>
+    const originalTitle = "Mr.Killer-Ghost";
+    const glitchChars = ['@', '#', '$', '%', '&', '*', '+', '=', '~'];
+    let interval;
+
+    function glitchTitle() {
+      let count = 0;
+      interval = setInterval(() => {
+        let glitched = originalTitle
+          .split('')
+          .map(char =>
+            Math.random() < 0.2
+              ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
+              : char
+          )
+          .join('');
+        document.title = glitched;
+
+        count++;
+        if (count > 10) {
+          clearInterval(interval);
+          document.title = originalTitle;
+          setTimeout(glitchTitle, 3000 + Math.random() * 2000); // Restart after delay
+        }
+      }, 100);
+    }
+
+    glitchTitle(); // Start on load
   </script>
 
 </body>
