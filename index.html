@@ -4,14 +4,109 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ghost</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" href="songs/Joan Of Arc.mp3" as="audio" />
+  <link rel="preload" href="https://raw.githubusercontent.com/Mr-Killer-Ghost/ghost/refs/heads/main/pics/pfp.png" as="image" />
+  <style>
+    /* Combined and optimized CSS */
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('https://github.com/Mr-Killer-Ghost/ghost/blob/main/pics/new%20BG-2.png?raw=true');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      cursor: url('https://github.com/Mr-Killer-Ghost/ghost/blob/main/pics/cur.png?raw=true'), auto;
+    }
+
+    #start-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    #start-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #start-screen h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 250px;
+      width: 90%;
+    }
+
+    .profile .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .profile h1 {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+      color: red;
+      text-shadow: 0 0 1px red, 0 0 10px red, 0 0 14px darkred;
+    }
+
+    .profile p {
+      margin-bottom: 2rem;
+      color: #aaaaaa;
+    }
+
+    .links .link-button {
+      display: block;
+      background-color: #000000;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .links .link-button:hover {
+      background-color: #2c2c2c;
+      transform: scale(1.05);
+      cursor: url('https://github.com/Mr-Killer-Ghost/ghost/blob/main/pics/cur.png?raw=true'), pointer;
+    }
+
+  </style>
 </head>
 <body>
 
-
   <div class="container">
     <div class="profile">
-      <img src="https://raw.githubusercontent.com/Mr-Killer-Ghost/ghost/refs/heads/main/pics/pfp.png" alt="Avatar" class="avatar" />
+      <img
+        src="https://raw.githubusercontent.com/Mr-Killer-Ghost/ghost/refs/heads/main/pics/pfp.png"
+        alt="Avatar"
+        class="avatar"
+        loading="lazy"
+      />
       <h1 class="glow-red-text">Mr.Killer-Ghost</h1>
       <p>the most simple of a website i could make</p>
     </div>
@@ -22,175 +117,30 @@
     </div>
   </div>
 
+  <div id="start-screen">
+    <h1>Click to Enter</h1>
+  </div>
 
-<div id="start-screen">
-  <h1>Click to Enter</h1>
-</div>
+  <audio id="audio-player" src="songs/Joan Of Arc.mp3"></audio>
 
-<audio id="audio-player" src="songs/Joan Of Arc.mp3"></audio>
+  <script>
+    const startScreen = document.getElementById('start-screen');
+    const audio = document.getElementById('audio-player');
 
-<script>
-const startScreen = document.getElementById('start-screen');
-const audio = document.getElementById('audio-player');
+    startScreen.addEventListener('click', () => {
+      startScreen.classList.add('fade-out');
 
-startScreen.addEventListener('click', () => {
-  startScreen.classList.add('fade-out'); // start fade out animation
+      startScreen.addEventListener(
+        'transitionend',
+        () => {
+          startScreen.style.display = 'none';
+        },
+        { once: true }
+      );
 
-  // Wait for the transition to finish (1 second) then hide completely
-  startScreen.addEventListener('transitionend', () => {
-    startScreen.style.display = 'none';
-  }, { once: true });
-
-  audio.play(); // start playing immediately
-});
-
-</script>
+      audio.play();
+    });
+  </script>
 
 </body>
-
-
-
-
-
-<style>
-
-/* css */
-
-#start-screen {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: #000;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  cursor: pointer;
-  font-family: Arial, sans-serif;
-  z-index: 9999;
-
-  opacity: 1;
-  transition: opacity 1s ease;
-  /* keep it visible initially */
-}
-
-#start-screen.fade-out {
-  opacity: 0;
-  pointer-events: none;
-  /* Make it transparent and non-interactive */
-}
-
-#start-screen h1 {
-  font-size: 3rem;
-  margin: 0 0 1rem 0;
-}
-
-#start-screen p {
-  font-size: 1.2rem;
-  opacity: 0.7;
-}
-
-
-
-
-body {
-  cursor: url('https://github.com/Mr-Killer-Ghost/ghost/blob/main/pics/cur.png?raw=true'), auto;
-}
-
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0e0e0e;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-image: url('https://github.com/Mr-Killer-Ghost/ghost/blob/main/pics/new%20BG-2.png?raw=true');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-
-.container {
-  text-align: center;
-  max-width: 250px;
-  width: 90%;
-}
-
-.profile .avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-.profile h1 {
-  margin: 0.5rem 0;
-  font-size: 1.5rem;
-}
-
-.profile p {
-  margin-bottom: 2rem;
-  color: #aaaaaa;
-}
-
-/* For all buttons and links */
-button:hover, a:hover {
-  cursor: pointer;
-}
-
-/* Or with a custom cursor image */
-button:hover, a:hover {
-  cursor: url('https://github.com/Mr-Killer-Ghost/ghost/blob/main/pics/cur.png?raw=true'), pointer;
-}
-
-
-.links .link-button {
-  display: block;
-  background-color: #000000;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
-  transition: 
-    background-color 0.3s,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.links .link-button:hover {
-  background-color: #2c2c2c;
-  transform: scale(1.05);
-
-  
-}
-
-.glow-red-text {
-  color: red;
-  text-shadow: 0 0 1px red, 0 0 10px red, 0 0 14px darkred;
-}
-
-
-
-
-</style>
-
 </html>
