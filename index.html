@@ -112,66 +112,60 @@
 .glitch::after {
   content: attr(data-text);
   position: absolute;
-  top: 0; left: 0;
+  left: 0;
   width: 100%;
-  overflow: hidden;
   color: red;
-  background: transparent;
-  clip: rect(0, 900px, 0, 0);
+  z-index: -1;
 }
 
 .glitch::before {
-  left: 2px;
-  text-shadow: -1px 0 cyan;
-  animation: glitch-anim 2s infinite linear alternate-reverse;
+  color: cyan;
+  transform: translate(-2px, 0);
+  animation: glitch-anim-before 1.5s infinite ease-in-out;
 }
 
 .glitch::after {
-  left: -2px;
-  text-shadow: -1px 0 magenta;
-  animation: glitch-anim2 2s infinite linear alternate-reverse;
+  color: magenta;
+  transform: translate(2px, 0);
+  animation: glitch-anim-after 1.5s infinite ease-in-out;
 }
 
 @keyframes glitch-skew {
   0% { transform: skew(0deg); }
-  20% { transform: skew(5deg); }
-  40% { transform: skew(-5deg); }
-  60% { transform: skew(3deg); }
-  80% { transform: skew(-2deg); }
+  20% { transform: skew(2deg); }
+  40% { transform: skew(-2deg); }
+  60% { transform: skew(1deg); }
+  80% { transform: skew(-1deg); }
   100% { transform: skew(0deg); }
 }
 
-@keyframes glitch-anim {
-  0% { clip: rect(42px, 9999px, 44px, 0); }
-  10% { clip: rect(12px, 9999px, 16px, 0); }
-  20% { clip: rect(82px, 9999px, 85px, 0); }
-  30% { clip: rect(22px, 9999px, 26px, 0); }
-  40% { clip: rect(62px, 9999px, 65px, 0); }
-  50% { clip: rect(12px, 9999px, 14px, 0); }
-  60% { clip: rect(72px, 9999px, 75px, 0); }
-  70% { clip: rect(32px, 9999px, 35px, 0); }
-  80% { clip: rect(42px, 9999px, 45px, 0); }
-  90% { clip: rect(22px, 9999px, 25px, 0); }
-  100% { clip: rect(52px, 9999px, 54px, 0); }
+@keyframes glitch-anim-before {
+  0% { clip-path: inset(0% 0 100% 0); }
+  10% { clip-path: inset(10% 0 85% 0); }
+  20% { clip-path: inset(20% 0 70% 0); }
+  30% { clip-path: inset(30% 0 60% 0); }
+  40% { clip-path: inset(40% 0 50% 0); }
+  50% { clip-path: inset(50% 0 40% 0); }
+  60% { clip-path: inset(60% 0 30% 0); }
+  70% { clip-path: inset(70% 0 20% 0); }
+  80% { clip-path: inset(80% 0 10% 0); }
+  90% { clip-path: inset(90% 0 5% 0); }
+  100% { clip-path: inset(100% 0 0% 0); }
 }
 
-@keyframes glitch-anim2 {
-  0% { clip: rect(12px, 9999px, 14px, 0); }
-  10% { clip: rect(72px, 9999px, 75px, 0); }
-  20% { clip: rect(22px, 9999px, 25px, 0); }
-  30% { clip: rect(42px, 9999px, 44px, 0); }
-  40% { clip: rect(12px, 9999px, 16px, 0); }
-  50% { clip: rect(62px, 9999px, 65px, 0); }
-  60% { clip: rect(22px, 9999px, 24px, 0); }
-  70% { clip: rect(82px, 9999px, 85px, 0); }
-  80% { clip: rect(42px, 9999px, 44px, 0); }
-  90% { clip: rect(32px, 9999px, 34px, 0); }
-  100% { clip: rect(52px, 9999px, 54px, 0); }
+@keyframes glitch-anim-after {
+  0% { clip-path: inset(100% 0 0% 0); }
+  10% { clip-path: inset(90% 0 5% 0); }
+  20% { clip-path: inset(80% 0 10% 0); }
+  30% { clip-path: inset(70% 0 20% 0); }
+  40% { clip-path: inset(60% 0 30% 0); }
+  50% { clip-path: inset(50% 0 40% 0); }
+  60% { clip-path: inset(40% 0 50% 0); }
+  70% { clip-path: inset(30% 0 60% 0); }
+  80% { clip-path: inset(20% 0 70% 0); }
+  90% { clip-path: inset(10% 0 85% 0); }
+  100% { clip-path: inset(0% 0 100% 0); }
 }
-
-
-
-
 
 
   </style>
@@ -198,7 +192,7 @@
   </div>
 
   <div id="start-screen">
-    <h1>Click to Enter</h1>
+    <h1>Click To Enter</h1>
   </div>
 
   <audio id="audio-player" src="songs/Joan Of Arc.mp3"></audio>
